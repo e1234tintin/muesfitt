@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vücut Kitle İndeksi Hesaplama</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      input {
+        width: 95%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Vücut Kitle İndeksi Hesaplama</h2>
+      <form id="bmiForm">
+        <label for="weight">Kilo (kg):</label>
+        <input
+          type="number"
+          placeholder="76.4 şeklinde yazın"
+          id="weight"
+          step="0.01"
+          required
+        />
+        <label for="height">Boy (metre):</label>
+        <input
+          type="number"
+          placeholder="1.80 şeklinde yazın"
+          id="height"
+          step="0.01"
+          required
+        />
+        <button type="button" onclick="calculateBMI()">Hesapla</button>
+      </form>
+      <br />
+      <div id="result"></div>
+      <div id="interpretation"></div>
+    </div>
+    <script>
+      function calculateBMI() {
+        var weight = parseFloat(document.getElementById("weight").value);
+        var height = parseFloat(document.getElementById("height").value);
+        var bmi = weight / (height * height);
+        bmi = bmi.toFixed(2);
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "Vücut Kitle İndeksi (VKİ): " + bmi;
+        var interpretationDiv = document.getElementById("interpretation");
+        var interpretation = "";
+        if (bmi < 18.5) {
+          interpretation = "Zayıf";
+          resultDiv.style.color = "orange";
+          interpretationDiv.style.color = "orange";
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+          interpretation = "Normal (Sağlıklı)";
+          resultDiv.style.color = "green";
+          interpretationDiv.style.color = "green";
+        } else if (bmi >= 25 && bmi < 29.9) {
+          interpretation = "Fazla Kilolu";
+          resultDiv.style.color = "red";
+          interpretationDiv.style.color = "red";
+        } else if (bmi >= 30) {
+          interpretation = "Obez";
+          resultDiv.style.color = "darkred";
+          interpretationDiv.style.color = "darkred";
+        }
+        interpretationDiv.innerHTML = "Durum: " + interpretation;
+      }
+    </script>
+  </body>
+</html>

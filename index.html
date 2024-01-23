@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 8px;
+            font-size: 16px;
+        }
+
+        .tm-submit-container {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        hr {
+            margin: 30px 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('.login-card form');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                var formData = new FormData(form);
+
+                fetch('/index.html', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    alert('Form başarıyla gönderildi.');
+                })
+                .catch(error => {
+                    console.error('Form gönderimi hatası:', error);
+                    alert('Form gönderimi sırasında bir hata oluştu.');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="login-card">
+        <form class="tm-form-container" action="/index.html" method="post">
+            <h2 class="tm-question-header tm-question-header-mt">LÜTFEN ALANLARI DOLDURUNUZ</h2>
+
+            <div class="form-group">
+                <label for="inputName">İsminiz</label>
+                <input
+                    type="text"
+                    class="form-control browser-default"
+                    id="inputName"
+                    name="name"
+                    aria-describedby="nameHelp"
+                    placeholder="Adınızı girin"
+                />
+            </div>
+            <div class="form-group">
+                <label for="inputSurname">Soyisminiz</label>
+                <input
+                    type="text"
+                    class="form-control browser-default"
+                    id="inputSurname"
+                    name="surname"
+                    aria-describedby="surnameHelp"
+                    placeholder="Soyadınızı girin"
+                />
+            </div>
+
+            <div class="col-12 text-center tm-submit-container">
+                <button type="submit" class="btn btn-primary tm-btn-submit">
+                    <a href="anasayfa.html">ANASAYFAYA GİT</a>
+                </button>
+            </div>
+
+            <div class="col-12">
+                <hr />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
